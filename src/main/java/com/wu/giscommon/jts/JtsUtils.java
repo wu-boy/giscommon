@@ -1,6 +1,7 @@
 package com.wu.giscommon.jts;
 
 import com.vividsolutions.jts.geom.*;
+import com.vividsolutions.jts.io.WKTReader;
 
 /**
  * JTS工具类
@@ -32,5 +33,22 @@ public class JtsUtils {
             result = geometryFactory.createPolygon(multiLineString.getCoordinates());
         }
         return result;
+    }
+
+    /**
+     * 根据wkt创建Polygon
+     * @param wkt
+     * @return Polygon
+     */
+    public static Polygon createPolygonByWKT(String wkt){
+        WKTReader reader = new WKTReader(geometryFactory);
+        Polygon polygon = null;
+        try {
+            // wkt = "POLYGON((20 10, 30 0, 40 10, 30 20, 20 10))")
+            polygon = (Polygon) reader.read(wkt);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return polygon;
     }
 }
