@@ -5,7 +5,7 @@ import com.vividsolutions.jts.io.WKTReader;
 
 /**
  * JTS工具类
- * @version 2017-11-06
+ * @date 2018-04-23
  */
 public class JtsUtils {
 
@@ -20,6 +20,23 @@ public class JtsUtils {
     public static Point createPoint(double lon, double lat){
         Coordinate c = new Coordinate(lon, lat);
         return geometryFactory.createPoint(c);
+    }
+
+    /**
+     * 根据wkt创建MultiLineString
+     * @param wkt
+     * @return MultiLineString
+     */
+    public static MultiLineString createMultiLineStringByWKT(String wkt){
+        WKTReader reader = new WKTReader(geometryFactory);
+        MultiLineString result = null;
+        try {
+            // wkt = "MULTILINESTRING((113.665955 34.866966,113.663994 34.866966))")
+            result = (MultiLineString) reader.read(wkt);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
