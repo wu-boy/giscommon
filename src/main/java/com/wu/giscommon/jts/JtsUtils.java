@@ -6,7 +6,7 @@ import com.vividsolutions.jts.io.WKTReader;
 /**
  * JTS工具类
  * @author wusq
- * @date 2018-05-11
+ * @date 2018-06-21
  */
 public class JtsUtils {
 
@@ -21,6 +21,16 @@ public class JtsUtils {
     public static Point createPoint(double lon, double lat){
         Coordinate c = new Coordinate(lon, lat);
         return geometryFactory.createPoint(c);
+    }
+
+    /**
+     * 创建Point
+     * @param lon
+     * @param lat
+     * @return Point
+     */
+    public static Point createPoint(String lon, String lat){
+        return createPoint(Double.parseDouble(lon), Double.parseDouble(lat));
     }
 
     /**

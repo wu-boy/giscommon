@@ -3,7 +3,7 @@ package com.wu.giscommon.gis;
 /**
  * GIS工具类
  * @author wusq
- * @date 2018-06-08
+ * @date 2018-06-21
  */
 public class GisUtils {
 
@@ -32,6 +32,44 @@ public class GisUtils {
         s = Math.round(s * 10000d) / 10000d;
         s = s * 1000;
         return s;
+    }
+
+    /**
+     * 通过两点经纬度获取距离(单位：米)
+     * @param lat1
+     * @param lng1
+     * @param lat2
+     * @param lng2
+     * @return
+     */
+    public static double getDistance(String lat1, String lng1, String lat2, String lng2) {
+        return getDistance(Double.parseDouble(lat1), Double.parseDouble(lng1),
+                Double.parseDouble(lat2), Double.parseDouble(lng2));
+    }
+
+
+    /**
+     * 获取两点之间的曼哈顿距离
+     * @param lon1
+     * @param lat1
+     * @param lon2
+     * @param lat2
+     * @return
+     */
+    public static double getManhattanDistance(double lon1, double lat1, double lon2, double lat2){
+        return getDistance(lat1, lon1, lat1, lon2) + getDistance(lat1, lon1, lat2, lon1);
+    }
+
+    /**
+     * 获取两点之间的曼哈顿距离
+     * @param lon1
+     * @param lat1
+     * @param lon2
+     * @param lat2
+     * @return
+     */
+    public static double getManhattanDistance(String lon1, String lat1, String lon2, String lat2){
+        return getDistance(lat1, lon1, lat1, lon2) + getDistance(lat1, lon1, lat2, lon1);
     }
 
     /**
